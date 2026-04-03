@@ -1,125 +1,67 @@
-# 🔗 LangChain Essentials Python
+# LangChain Study Notes
 
+这个目录保留的是我学习 LangChain Essentials 时实际会阅读、运行和修改的 Python 内容。
 
-## 🚀 Setup 
+## 说明
 
-### Prerequisites
+- notebook 以官方教程为基础，并加入了我自己的中文注释
+- `env_utils.py` 补强了环境变量和依赖检查
+- `l5_local_mcp_server.py` 用本地 MCP 服务替换了已经过时的官方 MCP 示例
+- 部分官方图片资源没有继续保留，不影响 notebook 代码运行
 
-- Ensure you're using Python 3.11 - 3.13.
-- [uv](https://docs.astral.sh/uv/) package manager or [pip](https://pypi.org/project/pip/)
-- OpenAI API key
-- Node.js and npx (required for MCP server in notebook 3):
-```bash
-# Install Node.js (includes npx)
-# On macOS with Homebrew:
-brew install node
+## 环境准备
 
-# On Ubuntu/Debian:
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-sudo apt-get install -y nodejs
+建议使用 Python `3.11` 到 `3.13`。
 
-# Verify installation:
-node --version
-npx --version
-```
-
-### Installation
-
-Download the course repository
+### 1. 创建 `.env`
 
 ```bash
-# Clone the repo, cd to 'python' directory
-git clone https://github.com/langchain-ai/lca-langchainV1-essentials.git
-cd ./lca-langchainV1-essentials/python
-```
-
-Make a copy of example.env
-
-```bash
-# Create .env file
 cp example.env .env
 ```
 
-Insert API keys directly into .env file, OpenAI (required) and [LangSmith](#getting-started-with-langsmith) (optional)
+然后填入你自己的模型和 LangSmith 配置。
+
+### 2. 安装依赖
+
+这个目录保留 `pyproject.toml` 作为环境入口，推荐直接用 `uv`：
 
 ```bash
-# Add OpenAI API key
-OPENAI_API_KEY=your_openai_api_key_here
-# The course is written with OpenAI models, but you can choose others if you prefer. 
-# Be sure to add the key and modify the code to call your preferred model
-#ANTHROPIC_API_KEY=your_anthropic_api_key_here_if_you_prefer
-
-# Optional API key for LangSmith tracing
-LANGSMITH_API_KEY=your_langsmith_api_key_here
-LANGSMITH_TRACING=true
-LANGSMITH_PROJECT=langgraph-py-essentials
-# If you are on the EU instance:
-LANGSMITH_ENDPOINT=https://eu.api.smith.langchain.com
-
-```
-
-Make a virtual environment and install dependencies
-```bash
-# Create virtual environment and install dependencies
 uv sync
 ```
 
-Run notebooks
+如果你使用别的包管理方式，也可以按 `pyproject.toml` 中的依赖自行安装。
+
+### 3. 运行 notebook
 
 ```bash
-# Run Jupyter notebooks directly with uv
 uv run jupyter lab
-
-# Or activate the virtual environment if preferred
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-jupyter lab
 ```
 
-Optional: Setup [LangSmith Studio](https://docs.langchain.com/oss/python/langchain/studio)
+## Lessons
+
+- `L1_fast_agent.ipynb`: 用 `create_agent` 快速搭建 agent
+- `L2_messages.ipynb`: 理解消息在 agent 中的流转
+- `L3_streaming.ipynb`: 学习流式输出
+- `L4_tools.ipynb`: 学习工具调用
+- `L5_tools_with_mcp.ipynb`: 学习 MCP 接入，配套本地服务为 `l5_local_mcp_server.py`
+- `L6_memory.ipynb`: 学习记忆与状态管理
+- `L7_structuredOutput.ipynb`: 学习结构化输出
+- `L8_dynamic.ipynb`: 学习动态系统提示词
+- `L9_HITL.ipynb`: 学习 Human-in-the-Loop
+
+## Studio
+
+`studio/` 目录保留了 SQL agent 的实战示例：
+
+- `langgraph.json`
+- `sql_agent1.py`
+- `sql_agent2.py`
+- `env_utils.py`
+- `Chinook.db`
+
+运行前先把根目录下准备好的 `.env` 复制到 `studio/`，再启动：
 
 ```bash
-# copy the .env file you created above to the studio directory
-cp .env ./studio/.
 cd studio
-#to run with uv
 uv run langgraph dev
-#to run with virtual env
-langgraph dev
 ```
-
-### Getting Started with LangSmith
-
-- Create a [LangSmith](https://smith.langchain.com/) account
-- Create a LangSmith API key
-<img width="600" alt="Screenshot 2025-10-16 at 8 28 03 AM" src="https://github.com/user-attachments/assets/e39b8364-c3e3-4c75-a287-d9d4685caad5" />
-<img width="600" alt="Screenshot 2025-10-16 at 8 29 57 AM" src="https://github.com/user-attachments/assets/2e916b2d-e3b0-4c59-a178-c5818604b8fe" />
-
-# 📚 Lessons
-This repository contains nine short notebooks that serve as brief introductions to many of the most-used features in LangChain, starting with the new **Create Agent**.
-
----
-
-### `L1_fast_agent.ipynb` - 🤖 Create Agent 🤖
-- In this notebook, you will use LangChain’s `create_agent` to build an SQL agent in just a few lines of code.  
-- It demonstrates how quick and easy it is to build a powerful agent. You can easily take this agent and apply it to your own project. 
-- You will also use **LangSmith Studio**, a handy visual debugger to run, host, and explore agents.
-
----
-
-### `L2-7.ipynb` - 🧱 Building Blocks 🧱
-In Lessons 2–7, you will learn how to use some of the fundamental building blocks in LangChain. These lessons explain and complement `create_agent`, and you’ll find them useful when creating your own agents. Each lesson is concise and focused.
-
-- **L2_messages.ipynb**: Learn how messages convey information between agent components.  
-- **L3_streaming.ipynb**: Learn how to reduce user-perceived latency using streaming.  
-- **L4_tools.ipynb**: Learn basic tool use to enhance your model with custom or prebuilt tools.  
-- **L5_tools_with_mcp.ipynb**: Learn to use the LangChain MCP adapter to access the world of MCP tools.  
-- **L6_memory.ipynb**: Learn how to give your agent the ability to maintain state between invocations.  
-- **L7_structuredOutput.ipynb**: Learn how to produce structured output from your agent.  
-
----
-
-### `L8-9.ipynb` - 🪛 Customize Your Agent 🤖
-Lessons 2–7 covered out-of-the-box features. However, `create_agent` also supports both prebuilt and user-defined customization through **Middleware**. This section describes middleware and includes two lessons highlighting specific use cases.
-
-- **L8_dynamic.ipynb**: Learn how to dynamically modify the agent’s system prompt to react to changing contexts.  
-- **L9_HITL.ipynb**: Learn how to use Interrupts to enable Human-in-the-Loop interactions.

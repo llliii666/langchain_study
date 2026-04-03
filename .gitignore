@@ -193,3 +193,5 @@ Thumbs.db
 .vscode/
 
 **/.langgraph_api/
+python/package/
+python/mcp_local_test.log
