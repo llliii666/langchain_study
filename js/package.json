@@ -1,0 +1,46 @@
+{
+  "name": "LangChain Essentials Typescript",
+  "author": "Christian Bromann <christian@langchain.dev>",
+  "description": "LangChain Essentials Typescript",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpx @langchain/langgraph-cli dev"
+  },
+  "keywords": [
+    "langchain",
+    "langchainjs",
+    "langchain-essentials",
+    "langchain-typescript"
+  ],
+  "license": "MIT",
+  "packageManager": "pnpm@10.14.0",
+  "dependencies": {
+    "@langchain/anthropic": "^1.0.0",
+    "@langchain/classic": "^1.0.0",
+    "@langchain/community": "^1.0.0",
+    "@langchain/core": "^1.0.0",
+    "@langchain/langgraph": "^1.0.0",
+    "@langchain/mcp-adapters": "^1.0.0",
+    "@langchain/openai": "^1.0.0",
+    "langchain": "^1.0.0",
+
+    "ansis": "^4.2.0",
+    "better-sqlite3": "^11.8.1",
+    "dotenv": "^17.2.3",
+    "sqlite3": "^5.1.7",
+    "tsx": "^4.20.6",
+    "typeorm": "^0.3.27",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@langchain/langgraph-cli": "^1.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3",
+      "sqlite3"
+    ]
+  }
+}
