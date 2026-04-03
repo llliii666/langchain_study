@@ -1,17 +1,19 @@
 """SQL agent for studio."""
 
-import pathlib
-import re
+from langchain_deepseek import ChatDeepSeek
 
-import requests
+from env_utils import DEEPSEEK_BASE_URL, DEEPSEEK_API_KEY
+
 from langchain.agents import create_agent
-from langchain.chat_models import init_chat_model
 from langchain_community.utilities import SQLDatabase
-from langchain_core.messages import SystemMessage
 from langchain_core.tools import tool
 
-llm = init_chat_model("openai:gpt-5")
 
+llm = ChatDeepSeek(
+    model='deepseek-chat',
+    api_key=DEEPSEEK_API_KEY,
+    api_base=DEEPSEEK_BASE_URL
+)
 # database is from:
 # url = "https://storage.googleapis.com/benchmarks-artifacts/chinook/Chinook.db"
 
