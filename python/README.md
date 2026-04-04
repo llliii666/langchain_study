@@ -1,13 +1,13 @@
-# LangChain Study Notes
+# LangChain Python 快速入门笔记
 
-这个目录保留的是我学习 LangChain Essentials 时实际会阅读、运行和修改的 Python 内容。
+这个目录对应的是 LangChain 官方教程里 LangChain Python 的快速入门内容，保留的是我自己实际会运行和修改的 Python 部分。
 
 ## 说明
 
-- notebook 以官方教程为基础，并加入了我自己的中文注释
-- `env_utils.py` 补强了环境变量和依赖检查
-- `l5_local_mcp_server.py` 用本地 MCP 服务替换了已经过时的官方 MCP 示例
-- 部分官方图片资源没有继续保留，不影响 notebook 代码运行
+- notebook 基于官方教程整理，并加入了我自己的中文注释
+- `env_utils.py` 用来检查环境变量和依赖
+- `l5_local_mcp_server.py` 提供了一个本地 MCP 示例，方便在当前环境里直接跑通
+- 少量官方图片资源没有保留，不影响 notebook 代码运行
 
 ## 环境准备
 
@@ -15,11 +15,7 @@
 
 ### 1. 创建 `.env`
 
-```bash
-cp example.env .env
-```
-
-然后填入你自己的模型和 LangSmith 配置。
+把 `example.env` 复制一份并命名为 `.env`，然后填入你自己的模型和 LangSmith 配置。
 
 ### 2. 安装依赖
 
@@ -59,7 +55,7 @@ uv run jupyter lab
 - `env_utils.py`
 - `Chinook.db`
 
-运行前先把根目录下准备好的 `.env` 复制到 `studio/`，再启动：
+运行前先把当前目录下准备好的 `.env` 复制到 `studio/`，再启动：
 
 ```bash
 cd studio
